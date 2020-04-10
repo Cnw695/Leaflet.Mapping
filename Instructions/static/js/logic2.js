@@ -1,5 +1,5 @@
-var starterCoordinates = [39.8283, -98.5795];
-var mapZoomLevel = 12;
+var starterCoordinates = [36.77, -119.4179];
+var mapZoomLevel = 5;
 
 var map = L.map("map", {
     center: starterCoordinates,
@@ -16,17 +16,39 @@ L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 
   var earthquakeData = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
 
+  var geojson;
+
   d3.json(earthquakeData, function(data){
       console.log(data);
-
-      var earthquakes = data.features//.geometry//.coordinates;
+      geojson = L.choropleth(data, {
+          valueProperty: "mag",
+          scale: ["#ffffb2", "#b10026"],
+          steps: 10,
+          mode: "q",
+          style:{
+              color: "#fff",
+              weight: 1, 
+              fillOpacity:0.8
+          },
+          onEachFeature: function(feature, layer){
+              layer.bindPopup("magnitude:" + features.properties.mag )
+          }
+      }).addTo(map);
+    
+      //var earthquakes = response.features//.geometry//.coordinates;
 
       //var quakeMarkers=[]
-      for(var index = 0; index < earthquakes.length; index++)
-      {
-          var earthquake = earthquakes[index];
+    //   for(var index = 0; index < response.length; index++)
+    //   {
+    //       var location = response[index].geometry;
 
-          var quakeMarker = L.marker([earthquakes.geometry.coordinates[1], earthquakes.geometry.coordinates[0]])
-          .bindPopup(earthquake)
-      }
+    //       if(location){
+    //           L.marker([location.coordinates[1], location.coordinates[0]]).addTo(map);
+    //       }
+          
+
+
+        //   var quakeMarker = L.marker([earthquakes.geometry.coordinates[1], earthquakes.geometry.coordinates[0]])
+        //   .bindPopup(earthquake)
+    //   };
     });
