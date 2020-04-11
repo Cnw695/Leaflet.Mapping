@@ -19,7 +19,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
   var geojson;
 
   d3.json(earthquakeData, function(data){
-      console.log(data);
+      //console.log(data);
       geojson = L.choropleth(data, {
           valueProperty: "mag",
           scale: ["#ffffb2", "#b10026"],
@@ -31,7 +31,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
               fillOpacity:0.8
           },
           onEachFeature: function(feature, layer){
-              layer.bindPopup("magnitude:" + features.properties.mag )
+              layer.bindPopup("magnitude:" +  )
           }
       }).addTo(map);
     
