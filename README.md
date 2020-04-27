@@ -5,3 +5,4 @@ Tools: Leaflet, JavaScript, HTML, CSS
 
 * Java Script Code-->>>>Leaflet.Mapping/Instructions/static/js
 * HTML file-->>>Leaflet.Mapping/Instructions/index.html
+* CSS-->>>>Leaflet.Mapping/Instructions/static/css/style.css
